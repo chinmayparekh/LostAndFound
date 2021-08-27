@@ -1,0 +1,38 @@
+{% extends "findme/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    h1{
+    margin-left:650px;
+    color:white;
+    }
+    .content{
+    color:black;
+    margin-top:20px;
+    padding:2px;
+    margin-left:10px;
+    }
+    #id_image{
+    color:white;
+
+    }
+    #id_image{
+    color:black;
+    }
+</style>
+<h1>Lost Item Details</h1>
+<div style="background: rgb(255,255,255,0.8);" class="container">
+    <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        <label class="content">{{field.label_tag}}</label>
+        {{field}}
+        <span style="color: red;">{{field.error}}</span>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-outline-success" style="margin-left:10px";>Post Item</button>
+</form>
+</div>
+
+{% endblock %}

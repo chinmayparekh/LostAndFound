@@ -1,0 +1,21 @@
+{% extends "findme/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div style="background: rgb(255,255,255,0.8);" class="content-section">
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend style="color: black;" class="border-bottom mb-4">Log In</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <br><button class="btn btn-outline-danger" type="submit">Login</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small style="color:#3d4247;"class="text-muted ">Need An Account? <a style="color:black"class="ml-2" href="{% url 'register' %}">Sign Up Now</a></small>
+
+
+        </div>
+    </div>
+{% endblock content %}
