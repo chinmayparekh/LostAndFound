@@ -1,4 +1,4 @@
-# Django Project
+# Django Project-Lost and Found
 
 # Instructions
 
@@ -30,7 +30,7 @@ On Windows:
 git clone https://github.com/chinmayparekh/LostAndFound.git
 
 ## Install requirements
-cd Blogspot/ <br/>
+cd LostandFound/ <br/>
 pip3 install -r requirements.txt
 
 ## Make migrations
