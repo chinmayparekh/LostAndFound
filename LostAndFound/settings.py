@@ -124,8 +124,8 @@ LOGIN_REDIRECT_URL = 'findme-home'
 
 LOGIN_URL = 'login'
 
-EMAIL_HOST ='smtp.gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'chinmayparekh11@gmail.com'
-EMAIL_HOST_PASSWORD = 'fzplncluxoeshfqx'
+EMAIL_HOST_USER = ''  # enter your email id here
+EMAIL_HOST_PASSWORD = ''  # enter your app password generated through gmail
 EMAIL_USE_TLS = True

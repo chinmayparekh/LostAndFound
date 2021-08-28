@@ -1,7 +1,7 @@
 {% extends "findme/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div style="background: rgb(255,255,255,0.8);" class="content-section">
+    <div style="background: rgb(255,255,255,0.8);" class="content-section container mt-4" >
         <form method="POST" autocomplete="off">
             {% csrf_token %}
             <fieldset class="form-group">

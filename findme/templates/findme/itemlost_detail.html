@@ -97,7 +97,7 @@
     }
 
     .card__arc path {
-        fill: rgb(166, 30, 15,0.8);
+        fill: rgb(166, 30, 15);
         d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
     }
 
@@ -146,56 +146,84 @@
         -webkit-line-clamp: 3;
         overflow: hidden;
     }
+
+    .parent {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr) 2fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .divcenter {
+        grid-area: 2 / 2 / 5 / 5;
+    }
+
+
+
+
 </style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                {% for item in items %}
-                {% if items|length > 0 %}
-                    <div class="col-md-4">
+                <div class="parent">
+                    <div class="divcenter">
                         <ul class="cards">
                             <li>
-                                <a href="{% url 'detail' item.ItemID %}" class="card">
-                                    <img src="{{ item.image.url}}" alt="" class="class__image picture">
+                                <a href="#" class="card">
+                                    <img src="{{ object.image.url}}" alt="" class="class__image picture">
                                     <div class="card__overlay">
 
-                                        <div style="background-color: rgb(166, 30, 15,0.8)" class="card__header">
+                                        <div style="background-color: rgb(166, 30, 15)" class="card__header">
                                             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                                                <path />
+                                                <path/>
                                             </svg>
-                                            <img src="{{ item.name.profile.image.url }}" class="card__thumb">
+                                            <img src="{{ object.name.profile.image.url }}" class="card__thumb">
                                             <div class="card__header-text">
-                                                <h3 style="color:white" class="card__title">{{item.title}}</h3>
-                                                <span class="card__status">{{ item.lost_date|date:"d F, Y"}}</span>
+                                                <h3 style="color:white" class="card__title">{{object.title}}</h3>
+                                                <span class="card__status">{{ object.lost_date|date:"d F, Y"}}</span>
+
                                             </div>
                                         </div>
-                                        <p class="card__description">{{item.description}}</p>
-                                        <p style="color:honeydew" class="card__description">Lost at {{item.location}} by
-                                            {{item.name}}</p>
+                                        <p class="card__description">{{object.description}}</p>
+                                        <p style="color:honeydew" class="card__description">Lost at {{object.location}}
+                                            by
+                                            {{object.name}}</p>
 
-                                        <form method="post" action="{% url 'found' item.ItemID %}" autocomplete="off"
-                                            style="margin-left: 30px;">
+                                        <form method="post" action="{% url 'found' object.ItemID %}" autocomplete="off"
+                                              style="margin-left: 30px;">
                                             {% csrf_token %}
-                                            <input type="hidden" name="item" value="{{ item.pk }}" />
-                                            <input type="text" name="location" placeholder="location" required />
+                                            <input type="hidden" name="item" value="{{ object.pk }}"/>
+                                            <input type="text" name="location" placeholder="location" required/>
                                             <button type="submit" , class="btn btn-outline-success" ,name="found"
-                                                ,value="found">Found It!
+                                                    ,value="found">Found It!
                                             </button>
                                         </form>
 
+
                                     </div>
                                 </a>
+                                <div>
+                                    {% if object.name == user %}
+                                    <a class="btn btn-secondary btn-sm mt-1 mb-1"
+                                       href="{% url 'item-update' object.ItemID %}">Update</a>
+                                    <a class="btn btn-danger btn-sm mt-1 mb-1"
+                                       href="{% url 'item-delete' object.ItemID %}">Delete</a>
+                                    {% endif %}
+                                </div>
+
                             </li>
                         </ul>
                     </div>
-                
-                {% else %}
-                    <h1>NO items are found yet!</h1>
-                {% endif %}
-                {% endfor %}
+                </div>
+                <!-- <div class="col-md-6"> -->
+
             </div>
+
+
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
