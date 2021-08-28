@@ -41,7 +41,7 @@ python3 manage.py migrate
 python3 manage.py runserver
 
 ---
-#For enabling the mail feature
+# For enabling the mail feature
  ## To generate app password:
 refer to this article https://support.google.com/mail/answer/185833?hl=en-GB
 
