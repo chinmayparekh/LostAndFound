@@ -78,8 +78,6 @@ refer to this article https://support.google.com/mail/answer/185833?hl=en-GB
 ![register](https://user-images.githubusercontent.com/76399431/131253852-60ff58c8-29c0-40e5-bd30-e7a6b5a55dea.png)
 
 <h3> Done by:
----
 
                 Chinmay Parekh-IMT2020069
-
 ---
