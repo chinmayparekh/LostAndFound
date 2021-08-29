@@ -38,8 +38,8 @@ cd LostandFound/ <br/>
 pip3 install -r requirements.txt
 
 ## Make migrations
-
-python3 manage.py makemigrations python3 manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 
 ## Run the server
 
