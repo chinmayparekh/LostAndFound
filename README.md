@@ -4,6 +4,11 @@
 
 ---
 
+# Website hosted at:
+http://chinmayparekh.pythonanywhere.com/
+#### <i>Note: Will not be functional after November 30,2021. It is not yet responsive in nature so use of laptop is recommended.</i>
+
+
 ## For installing virtual environment
 
 On macOS and Linux:
@@ -38,8 +43,8 @@ cd LostandFound/ <br/>
 pip3 install -r requirements.txt
 
 ## Make migrations
-python3 manage.py makemigrations
-python3 manage.py migrate
+
+python3 manage.py makemigrations python3 manage.py migrate
 
 ## Run the server
 
@@ -53,7 +58,14 @@ python3 manage.py runserver
 
 refer to this article https://support.google.com/mail/answer/185833?hl=en-GB
 
-## Replace email host name with your email id
+### Rename .env.example to .env and enter the appropriate details.
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = '587'
+    EMAIL_HOST_USER = 'yourEmailID@gmail.com'
+    EMAIL_HOST_PASSWORD = 'your app password generated using the article's link
+    DEBUG = True
+    EMAIL_USE_TLS = True
+    EMAIL_ID = 'yourEmailID@gmail.com'
 
 # Images
 
@@ -79,5 +91,6 @@ refer to this article https://support.google.com/mail/answer/185833?hl=en-GB
 
 <h3> Done by:
 
-                Chinmay Parekh-IMT2020069
+    Chinmay Parekh-IMT2020069
+
 ---
