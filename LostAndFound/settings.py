@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'k3_5@_wnpa#s2w1sh2rd%gn=oa@c7!qa_%u-js0q-2_@o$hskt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+# DEBUG = True
+DEBUG = config('DEBUG', cast=bool, default=True)
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -123,9 +124,9 @@ CRISPY_TEMPLATE_PACk = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'findme-home'
 
 LOGIN_URL = 'login'
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = ''  # enter your email id here
-EMAIL_HOST_PASSWORD = ''  # enter your app password generated through gmail
-EMAIL_USE_TLS = True

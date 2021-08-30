@@ -13,6 +13,8 @@ class ItemLost(models.Model):
     lost_date = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='findme/images', default="")
     found_location = models.CharField(max_length=100, null=True, blank=True)
+    item_found_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,
+                                      related_name="item_found_user")
 
     def __str__(self):
         return self.title

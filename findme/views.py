@@ -1,13 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import ItemLost
 from .forms import Lost
 from django.core.mail import send_mail
+from decouple import config
 
 
 @login_required
@@ -29,6 +28,7 @@ def home(request):
 def about(request):
     return render(request, 'findme/about.html', {'title': 'About'})
 
+
 @login_required
 def found(request, ItemID):
     item = ItemLost.objects.get(ItemID=ItemID)
@@ -37,13 +37,13 @@ def found(request, ItemID):
     if request.method == "POST":
         if itemlost_author != itemfound_author:
             location = request.POST.get("location")
-            found_user = request.user
+            item.item_found_by = request.user
             email_id = item.name.email
 
             item.found = True
             print(request.POST)
             send_mail(
-                "Item Found!", f"found at {location} by {found_user}", "emailID@gmail.com", [email_id],
+                "Item Found!", f"found at {location} by {request.user}", config('EMAIL_ID', default=""), [email_id],
                 fail_silently=False,
             )
             item.found_location = request.POST.get('location')
@@ -54,13 +54,13 @@ def found(request, ItemID):
     return redirect('findme-home')
 
 
-class ItemDetailView(LoginRequiredMixin,DetailView):
+class ItemDetailView(LoginRequiredMixin, DetailView):
     model = ItemLost
     context_object_name = 'item'
     template_name = 'findme/item.html'
 
 
-class ItemDetail(LoginRequiredMixin,DetailView):
+class ItemDetail(LoginRequiredMixin, DetailView):
     model = ItemLost
 
 
@@ -96,4 +96,3 @@ class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == item.name:
             return True
         return False
-
