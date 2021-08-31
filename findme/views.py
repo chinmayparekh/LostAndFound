@@ -54,12 +54,6 @@ def found(request, ItemID):
     return redirect('findme-home')
 
 
-class ItemDetailView(LoginRequiredMixin, DetailView):
-    model = ItemLost
-    context_object_name = 'item'
-    template_name = 'findme/item.html'
-
-
 class ItemDetail(LoginRequiredMixin, DetailView):
     model = ItemLost
 

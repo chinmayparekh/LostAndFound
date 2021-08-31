@@ -158,10 +158,6 @@
     .divcenter {
         grid-area: 2 / 2 / 5 / 5;
     }
-
-
-
-
 </style>
 <div class="container-fluid">
     <div class="row">
@@ -174,10 +170,10 @@
                                 <a href="#" class="card">
                                     <img src="{{ object.image.url}}" alt="" class="class__image picture">
                                     <div class="card__overlay">
-
-                                        <div style="background-color: rgb(166, 30, 15)" class="card__header">
-                                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                                                <path/>
+                                        {% if object.found %}
+                                        <div style="background-color: rgb(15, 155, 57,0.8)" class="card__header">
+                                            <svg class="card__arc__found path" xmlns="http://www.w3.org/2000/svg">
+                                                <path />
                                             </svg>
                                             <img src="{{ object.name.profile.image.url }}" class="card__thumb">
                                             <div class="card__header-text">
@@ -190,26 +186,42 @@
                                         <p style="color:honeydew" class="card__description">Lost at {{object.location}}
                                             by
                                             {{object.name}}</p>
+                                        <p style="color:honeydew" class="card__description">Found at
+                                            {{object.found_location}} by {{object.item_found_by}}</p>
+                                        {% else %}
+                                        <div style="background-color: rgb(166, 30, 15)" class="card__header">
+                                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                                                <path />
+                                            </svg>
+                                            <img src="{{ object.name.profile.image.url }}" class="card__thumb">
+                                            <div class="card__header-text">
+                                                <h3 style="color:white" class="card__title">{{object.title}}</h3>
+                                                <span class="card__status">{{ object.lost_date|date:"d F, Y"}}</span>
 
+                                            </div>
+                                        </div>
+                                        <p class="card__description">{{object.description}}</p>
+                                        <p style="color:honeydew" class="card__description">Lost at {{object.location}}
+                                            by
+                                            {{object.name}}</p>
                                         <form method="post" action="{% url 'found' object.ItemID %}" autocomplete="off"
-                                              style="margin-left: 30px;">
+                                            style="margin-left: 30px;">
                                             {% csrf_token %}
-                                            <input type="hidden" name="item" value="{{ object.pk }}"/>
-                                            <input type="text" name="location" placeholder="location" required/>
+                                            <input type="hidden" name="item" value="{{ object.pk }}" />
+                                            <input type="text" name="location" placeholder="location" required />
                                             <button type="submit" , class="btn btn-outline-success" ,name="found"
-                                                    ,value="found">Found It!
+                                                ,value="found">Found It!
                                             </button>
                                         </form>
-
-
+                                        {% endif %}
                                     </div>
                                 </a>
                                 <div>
                                     {% if object.name == user %}
-                                    <a class="btn btn-secondary btn-sm mt-1 mb-1"
-                                       href="{% url 'item-update' object.ItemID %}">Update</a>
-                                    <a class="btn btn-danger btn-sm mt-1 mb-1"
-                                       href="{% url 'item-delete' object.ItemID %}">Delete</a>
+                                    <a class="btn btn-secondary mt-1 mb-1"
+                                        href="{% url 'item-update' object.ItemID %}">Update</a>
+                                    <a class="btn btn-danger mt-1 mb-1"
+                                        href="{% url 'item-delete' object.ItemID %}">Delete</a>
                                     {% endif %}
                                 </div>
 
