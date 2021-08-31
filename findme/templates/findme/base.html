@@ -79,7 +79,7 @@
 
     <a href="{% url 'findme-about' %}" class="nav-content">About</a>
     {% if user.is_authenticated %}
-    <a style="float:left" href="{% url 'findme-home' %}" class="active nav-content">Home</a>
+    <a style="float:left" href="{% url 'findme-home' %}" class="nav-content">Home</a>
     <a style="float:left" href="{% url 'profile' %}" class="nav-content">Profile</a>
     <a style="float:left" href="{% url 'findme-found' %}" class="nav-content">Found Items</a>
     <a style="float:left" href="{% url 'create' %}" class="nav-content">Create Item</a>
