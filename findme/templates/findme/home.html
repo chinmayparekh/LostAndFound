@@ -146,54 +146,56 @@
         -webkit-line-clamp: 3;
         overflow: hidden;
     }
+
 </style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                {% for item in items %}
                 {% if items|length > 0 %}
-                    <div class="col-md-4">
-                        <ul class="cards">
-                            <li>
-                                <a href="{% url 'detail' item.ItemID %}" class="card">
-                                    <img src="{{ item.image.url}}" alt="" class="class__image picture">
-                                    <div class="card__overlay">
+                {% for item in items %}
 
-                                        <div style="background-color: rgb(166, 30, 15,0.8)" class="card__header">
-                                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                                                <path />
-                                            </svg>
-                                            <img src="{{ item.name.profile.image.url }}" class="card__thumb">
-                                            <div class="card__header-text">
-                                                <h3 style="color:white" class="card__title">{{item.title}}</h3>
-                                                <span class="card__status">{{ item.lost_date|date:"d F, Y"}}</span>
-                                            </div>
+                <div class="col-md-4">
+                    <ul class="cards">
+                        <li>
+                            <a href="{% url 'detail' item.ItemID %}" class="card">
+                                <img src="{{ item.image.url}}" alt="" class="class__image picture">
+                                <div class="card__overlay">
+
+                                    <div style="background-color: rgb(166, 30, 15,0.8)" class="card__header">
+                                        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                                            <path/>
+                                        </svg>
+                                        <img src="{{ item.name.profile.image.url }}" class="card__thumb">
+                                        <div class="card__header-text">
+                                            <h3 style="color:white" class="card__title">{{item.title}}</h3>
+                                            <span class="card__status">{{ item.lost_date|date:"d F, Y"}}</span>
                                         </div>
-                                        <p class="card__description">{{item.description}}</p>
-                                        <p style="color:honeydew" class="card__description">Lost at {{item.location}} by
-                                            {{item.name}}</p>
-
-                                        <form method="post" action="{% url 'found' item.ItemID %}" autocomplete="off"
-                                            style="margin-left: 30px;">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="item" value="{{ item.pk }}" />
-                                            <input type="text" name="location" placeholder="location" required />
-                                            <button type="submit" , class="btn btn-outline-success" ,name="found"
-                                                ,value="found">Found It!
-                                            </button>
-                                        </form>
-
                                     </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                
-                {% else %}
-                    <h1>NO items are found yet!</h1>
-                {% endif %}
+                                    <p class="card__description">{{item.description}}</p>
+                                    <p style="color:honeydew" class="card__description">Lost at {{item.location}} by
+                                        {{item.name}}</p>
+
+                                    <form method="post" action="{% url 'found' item.ItemID %}" autocomplete="off"
+                                          style="margin-left: 30px;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="item" value="{{ item.pk }}"/>
+                                        <input type="text" name="location" placeholder="location" required/>
+                                        <button type="submit" , class="btn btn-outline-success" ,name="found"
+                                                ,value="found">Found It!
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
                 {% endfor %}
+                {% else %}
+                <h1 style="color:white">No items are lost!</h1>
+                {% endif %}
             </div>
         </div>
     </div>

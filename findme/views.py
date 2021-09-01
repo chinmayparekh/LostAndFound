@@ -47,6 +47,7 @@ def found(request, ItemID):
                 fail_silently=False,
             )
             item.found_location = request.POST.get('location')
+            messages.info(request, f"An email has been sent to {email_id}")
         else:
             messages.info(request, "An item cannot be lost and found by the same person")
     item.save()
