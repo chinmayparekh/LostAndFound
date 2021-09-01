@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 import cv2
-
+from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='/default.jpg', upload_to='register/images')
+    image = models.ImageField(default='default.jpg', upload_to='register/images')
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
