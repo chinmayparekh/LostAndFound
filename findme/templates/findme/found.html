@@ -154,7 +154,6 @@
                 {% for item in items %}
 
                 <div class="col-md-4">
-                    <!-- <img class="picture" src="{{ item.image.url}}" alt=""> -->
                     <ul class="cards">
                         <li>
                             <a href="{% url 'detail' item.ItemID %}" class="card">
@@ -164,7 +163,7 @@
                                         <svg class="card__arc__found" xmlns="http://www.w3.org/2000/svg">
                                             <path/>
                                         </svg>
-                                        <img src="{{ item.image.url}}" class="card__thumb">
+                                        <img src="{{ item.name.profile.image.url }}" class="card__thumb">
                                         <div class="card__header-text">
                                             <h3 style="color:white" class="card__title">{{item.title}}</h3>
                                             <span style="color:honeydew" class="card__status">{{ item.lost_date|date:"d F, Y"}}</span>
